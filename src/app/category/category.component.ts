@@ -19,6 +19,7 @@ export class CategoryComponent implements OnInit {
   leftArticles: any[];
   rightArticles: any[];
   id: any;
+  articles: any[];
 
   private queryCategoriesArticles: Subscription;
 
@@ -36,13 +37,14 @@ export class CategoryComponent implements OnInit {
         })
         .valueChanges.subscribe(result => {
           this.data = result.data
-          this.category = this.data.category.name
+          this.category = this.data.category.data.attributes.name
+          this.articles = this.data.category.data.attributes.articles.data;
           console.log(this.data)
-          this.leftArticlesCount = Math.ceil(this.data.category.articles.length / 5);
-          this.leftArticles = this.data.category.articles.slice(0, this.leftArticlesCount);
-          this.rightArticles = this.data.category.articles.slice(
+          this.leftArticlesCount = Math.ceil(this.articles.length / 5);
+          this.leftArticles = this.articles.slice(0, this.leftArticlesCount);
+          this.rightArticles = this.articles.slice(
             this.leftArticlesCount,
-            this.data.category.articles.length
+            this.articles.length
           );
           this.loading = result.loading;
           this.errors = result.errors;

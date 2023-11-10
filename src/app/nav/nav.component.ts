@@ -11,6 +11,7 @@ import { Subscription } from "rxjs";
 })
 export class NavComponent implements OnInit {
   data: any = {};
+  categories: any[];
   loading = true;
   errors: any;
 
@@ -25,6 +26,7 @@ export class NavComponent implements OnInit {
       })
       .valueChanges.subscribe(result => {
         this.data = result.data;
+        this.categories = this.data.categories.data;
         this.loading = result.loading;
         this.errors = result.errors;
       });

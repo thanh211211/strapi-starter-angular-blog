@@ -6,14 +6,14 @@
   </div>
 
   <div class="uk-navbar-right">
-    <ul *ngIf="data" class="uk-navbar-nav">
-      <li *ngFor="let category of data.categories" class="uk-active">
+    <ul *ngIf="categories" class="uk-navbar-nav">
+      <li *ngFor="let category of categories" class="uk-active">
         <a
           routerLink="/category/{{ category.id }}"
           routerLinkActive="active"
           class="uk-link-reset"
         >
-          {{ category.name }}
+          {{ category.attributes.name }}
         </a>
       </li>
     </ul>

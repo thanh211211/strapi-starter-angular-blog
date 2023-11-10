@@ -14,6 +14,7 @@ import { environment } from '../../environments/environment';
 })
 export class ArticleComponent implements OnInit {
   data: any = {};
+  article: any = {};
   loading = true;
   errors: any;
   apiURL = environment.apiURL;
@@ -32,6 +33,7 @@ export class ArticleComponent implements OnInit {
       })
       .valueChanges.subscribe(result => {
         this.data = result.data;
+        this.article = this.data.article.data;
         this.loading = result.loading;
         this.errors = result.errors;
       });

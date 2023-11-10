@@ -16,6 +16,7 @@ export class ArticlesComponent implements OnInit {
   leftArticlesCount: any;
   leftArticles: any[];
   rightArticles: any[];
+  articles: any[];
 
   private queryArticles: Subscription;
 
@@ -28,11 +29,12 @@ export class ArticlesComponent implements OnInit {
       })
       .valueChanges.subscribe(result => {
         this.data = result.data;
-        this.leftArticlesCount = Math.ceil(this.data.articles.length / 5);
-        this.leftArticles = this.data.articles.slice(0, this.leftArticlesCount);
-        this.rightArticles = this.data.articles.slice(
+        this.articles = this.data.articles.data;
+        this.leftArticlesCount = Math.ceil(this.articles.length / 5);
+        this.leftArticles = this.articles.slice(0, this.leftArticlesCount);
+        this.rightArticles = this.articles.slice(
           this.leftArticlesCount,
-          this.data.articles.length
+          this.articles.length
         );
         this.loading = result.loading;
         this.errors = result.errors;
